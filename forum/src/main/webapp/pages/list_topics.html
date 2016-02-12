@@ -1,0 +1,27 @@
+<div class="jumbotron text-center" style="max-width: 960px; margin: 0 auto;">
+	
+	<h2>Lista de Topicos</h2>
+	
+	<table class="table table-hover table-striped table-bordered">
+	    <thead>
+	        <tr>
+	            <td>Titulo</td>
+	            <td>Mensagem</td>
+	            <td>Autor</td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr ng-repeat="topic in topics | filter:query | orderBy:orderby">
+	            <td><a href="#topic_details/{{topic.idtopico}}" class="thumb">{{topic.titulo}}</a></td>
+	            <td>{{topic.mensagem}}</td>
+	            <td>{{topic.autor}}</td>
+	        </tr>
+	    </tbody>
+	</table>
+	
+	<div class="pull-right">
+		<a href="#create_topic_page" class="btn btn-primary">Criar Topico</a>
+	</div>
+
+</div>
+
