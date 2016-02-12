@@ -42,14 +42,18 @@ forumApp.controller("home_controller", function($scope)
 
 forumApp.controller("list_topics_controller", function($scope, $http)
 {
-
+	$scope.sortType     = 'titulo'; // set the default sort type
+	$scope.sortReverse  = false;  // set the default sort order
+	$scope.searchFish   = '';     // set the default search/filter term
+	
 	$http.get('http://localhost:8080/topic/list').success(function(data)
 	{
 		$scope.topics = data;
+		//$scope.sortType     = 'titulo'; // set the default sort type
+		//$scope.sortReverse  = false;  // set the default sort order
 	});
 	
 	$scope.message = "lista de topicos!";
-	$scope.orderby = "idtopico";
 });
 
 forumApp.controller("topic_details_controller", function($scope, $http, $routeParams)
