@@ -8,6 +8,7 @@ public class RespostaBO
 	private int idresposta;
 	private String mensagem;
 	private String autor;
+	private long data_criacao;
 	private int topico_id;
 
 	public RespostaBO(){}
@@ -17,6 +18,8 @@ public class RespostaBO
 		this.idresposta = resposta.getidresposta();
 		this.mensagem = resposta.getMensagem();
 		this.autor = resposta.getAutor();
+		this.data_criacao = resposta.getData_criacao();
+		this.topico_id = resposta.getTopico().getidtopico();
 	}
 
 	public int getIdresposta() {
@@ -51,4 +54,22 @@ public class RespostaBO
 		this.topico_id = topico_id;
 	}
 
+	public long getData_criacao() {
+		return data_criacao;
+	}
+
+	public void setData_criacao(long data_criacao) {
+		this.data_criacao = data_criacao;
+	}
+
+	@Override
+	public String toString()
+	{
+		String result = String.format(
+				"Resposta[id=%d, autor='%s', mensagem='%s', data_criacao=%d, topico_id=%d]%n", 
+				this.idresposta, this.autor, this.mensagem, this.data_criacao, this.topico_id);
+		
+		return result;
+	}
+	
 }

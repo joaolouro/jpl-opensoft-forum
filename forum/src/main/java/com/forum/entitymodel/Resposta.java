@@ -18,15 +18,17 @@ public class Resposta
 	private int idresposta;
 	private String mensagem;
 	private String autor;
+	private long data_criacao;
 	@JsonManagedReference
 	private Topico topico;
 	
 	public Resposta(){}
 	
-	public Resposta(String mensagem, String autor)
+	public Resposta(String mensagem, String autor, long data_criacao)
 	{
 		this.setMensagem(mensagem);
 		this.setAutor(autor);
+		this.setData_criacao(data_criacao);
 	}
 	
 	@Id
@@ -66,5 +68,13 @@ public class Resposta
     public void setTopico(Topico topico) {
         this.topico = topico;
     }
+
+	public long getData_criacao() {
+		return this.data_criacao;
+	}
+
+	public void setData_criacao(long data_criacao) {
+		this.data_criacao = data_criacao;
+	}
 
 }

@@ -2,6 +2,7 @@ package com.forum.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,12 @@ public class TopicoService
 	@Transactional
 	public void createTopic(TopicoBO topico)
 	{
-		repository.save(new Topico(topico.getTitulo(), topico.getMensagem(), topico.getAutor()));	
+		repository.save(new Topico(topico.getTitulo(), topico.getMensagem(), topico.getAutor(), (new Date()).getTime()));	
 	}
 	
 	@Transactional
 	public void postTopicReply(RespostaBO respostabo)
 	{
-		repository.saveResposta(repository.findOne(respostabo.getTopico_id()), new Resposta(respostabo.getMensagem(), respostabo.getAutor()));
+		repository.saveResposta(repository.findOne(respostabo.getTopico_id()), new Resposta(respostabo.getMensagem(), respostabo.getAutor(), (new Date()).getTime()));
 	}
 }

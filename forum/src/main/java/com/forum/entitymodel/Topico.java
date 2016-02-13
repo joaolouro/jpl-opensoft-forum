@@ -22,16 +22,18 @@ public class Topico
 	private String titulo;
 	private String mensagem;
 	private String autor;
+	private long data_criacao;
 	@JsonBackReference
 	private Set<Resposta> respostas;
 	
 	public Topico(){}
 	
-	public Topico(String titulo, String mensagem, String autor)
+	public Topico(String titulo, String mensagem, String autor, long data_criacao)
 	{
 		this.setTitulo(titulo);
 		this.setMensagem(mensagem);
 		this.setAutor(autor);
+		this.setData_criacao(data_criacao);
 	}
 	
 	@Id
@@ -70,6 +72,13 @@ public class Topico
 		this.autor = autor;
 	}	
 	
+	public long getData_criacao() {
+		return data_criacao;
+	}
+
+	public void setData_criacao(long data_criacao) {
+		this.data_criacao = data_criacao;
+	}
 	
 	@OneToMany(mappedBy = "topico", cascade = CascadeType.ALL)
 	public Set<Resposta> getRespostas() {

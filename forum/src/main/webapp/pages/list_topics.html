@@ -28,12 +28,10 @@
 				</td>
 				<td>
 					Ultima Resposta
-					<!-- 
-					<a ng-click="sortType = 'ultima_resposta'; sortReverse = !sortReverse" class="nounderline_imp">
-					    <span ng-show="(sortType == 'ultima_resposta' && !sortReverse) || sortType != 'ultima_resposta'" class="fa fa-caret-down"></span>
-					    <span ng-show="(sortType == 'ultima_resposta' && sortReverse)  || sortType != 'ultima_resposta'" class="fa fa-caret-up"></span>
+					<a ng-click="sortType = 'data_ultima_resposta'; sortReverse = !sortReverse" class="nounderline_imp">
+					    <span ng-show="(sortType == 'data_ultima_resposta' && !sortReverse) || sortType != 'data_ultima_resposta'" class="fa fa-caret-down"></span>
+					    <span ng-show="(sortType == 'data_ultima_resposta' && sortReverse)  || sortType != 'data_ultima_resposta'" class="fa fa-caret-up"></span>
 					</a>
-					 -->
 				</td>
 				<td style="width: 16%;">
 					Respostas
@@ -47,9 +45,9 @@
 	    <tbody style="font-size: 13px;">
 	        <tr ng-repeat="topic in topics | orderBy:sortType:sortReverse | filter:{titulo : titulo_filter, autor: autor_filter}">
 	            <td style="font-weight: bold; text-align: left;"><a href="#topic_details/{{topic.idtopico}}" class="thumb">{{topic.titulo}}</a></td>
-	            <td>{{topic.autor}}</td>
-	            <td>{{getCurrentDate() | date:'dd/MM/yyyy , HH:mm:ss'}}</td>
-	            <td>{{getCurrentDate() | date:'dd/MM/yyyy , HH:mm:ss'}}</td>
+	            <td style="text-align: left;">{{topic.autor}}</td>
+	            <td>{{topic.data_criacao | date:'dd/MM/yyyy , HH:mm:ss'}}</td>
+	            <td>{{topic.data_ultima_resposta | date:'dd/MM/yyyy , HH:mm:ss'}}</td>
 	            <td>{{topic.nr_respostas}}</td>
 	        </tr>
 	    </tbody>

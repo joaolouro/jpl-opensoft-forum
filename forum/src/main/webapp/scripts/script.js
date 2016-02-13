@@ -42,7 +42,7 @@ forumApp.controller("home_controller", function($scope)
 
 forumApp.controller("list_topics_controller", function($scope, $http)
 {
-	$scope.sortType = "titulo";
+	$scope.sortType = "-data_ultima_resposta";
 	$scope.sortReverse = false;
 	$scope.titulo_filter = "";
 	$scope.search_autor = "";
