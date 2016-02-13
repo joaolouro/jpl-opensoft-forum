@@ -36,24 +36,28 @@ forumApp.config(function($routeProvider, $locationProvider)
 
 forumApp.controller("home_controller", function($scope)
 {
-	$scope.message = "Welcome to Forum";
+	$scope.title = "Welcome to Forum";
 });
 
 
 forumApp.controller("list_topics_controller", function($scope, $http)
 {
-	$scope.sortType     = 'titulo'; // set the default sort type
-	$scope.sortReverse  = false;  // set the default sort order
-	$scope.searchFish   = '';     // set the default search/filter term
+	$scope.sortType = "titulo";
+	$scope.sortReverse = false;
+	$scope.titulo_filter = "";
+	$scope.search_autor = "";
 	
 	$http.get('http://localhost:8080/topic/list').success(function(data)
 	{
 		$scope.topics = data;
-		//$scope.sortType     = 'titulo'; // set the default sort type
-		//$scope.sortReverse  = false;  // set the default sort order
 	});
 	
-	$scope.message = "lista de topicos!";
+	$scope.getCurrentDate = function()
+	{
+		return Date.now();
+	}
+	
+	$scope.title = "Lista de Tópicos";
 });
 
 forumApp.controller("topic_details_controller", function($scope, $http, $routeParams)
@@ -76,9 +80,9 @@ forumApp.controller("topic_details_controller", function($scope, $http, $routePa
 		var url = "http://localhost:8080/topic/respond";
 			
 		var reply_obj = {
-				"autor" : reply.autor,
-				"mensagem" : reply.message,
-				"topico_id" : $routeParams.id
+				autor : reply.autor,
+				mensagem : reply.message,
+				topico_id : $routeParams.id
 		};
 		
 		$http.post(url, reply_obj).success(function()
@@ -87,7 +91,7 @@ forumApp.controller("topic_details_controller", function($scope, $http, $routePa
 		});
 	}
 
-	$scope.message = "detalhe de topico!";
+	$scope.title = "Detalhe de Tópico";
 });
 
 forumApp.controller("create_topic_controller", function($scope, $http, $location)
@@ -98,9 +102,9 @@ forumApp.controller("create_topic_controller", function($scope, $http, $location
 		var url = "http://localhost:8080/topic/create";
 			
 		var topic_obj = {
-				"titulo" : topic.title,
-				"mensagem" : topic.message,
-				"autor" : topic.autor
+				titulo : topic.title,
+				mensagem : topic.message,
+				autor : topic.autor
 		};
 		
 		$http.post(url, topic_obj).success(function()
@@ -108,4 +112,6 @@ forumApp.controller("create_topic_controller", function($scope, $http, $location
 			$location.path("/list_topics");
 		});
 	}
+	
+	$scope.title = "Criar Tópico"
 });

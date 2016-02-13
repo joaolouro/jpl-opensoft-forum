@@ -13,6 +13,7 @@ public class TopicoBO
 	private String titulo;
 	private String mensagem;
 	private String autor;
+	private int nr_respostas = 1;
 	private Collection<RespostaBO> respostas = new ArrayList<RespostaBO>(0);
 
 	public TopicoBO(){}
@@ -23,7 +24,7 @@ public class TopicoBO
 		this.titulo = topico.getTitulo();
 		this.mensagem = topico.getMensagem();
 		this.autor = topico.getAutor();
-		
+		this.nr_respostas += topico.getRespostas().size();
 		for(Resposta resposta : topico.getRespostas())
 		{
 			RespostaBO respostabo = new RespostaBO(resposta);
@@ -69,6 +70,16 @@ public class TopicoBO
 
 	public void setRespostas(Collection<RespostaBO> respostas) {
 		this.respostas = respostas;
+	}
+	
+	public int getNr_respostas()
+	{
+		return nr_respostas;
+	}
+
+	public void setNr_respostas(int nr_respostas)
+	{
+		this.nr_respostas = nr_respostas;
 	}
 	
 }

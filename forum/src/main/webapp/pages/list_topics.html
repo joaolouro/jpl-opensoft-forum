@@ -1,30 +1,56 @@
-<div class="jumbotron text-center" style="max-width: 960px; margin: 0 auto;">
+<div class="jumbotron text-center" style="max-width: 1024px; margin: 0 auto;">
 	
-	<h2>Lista de Topicos</h2>
+	<h2>{{title}}</h2>
 	
 	<table class="table table-hover table-striped table-bordered">
-	    <thead>
+	    <thead style="font-size: 16px; font-weight: bold;">
 	        <tr>
 				<td>
+					Titulo
 					<a ng-click="sortType = 'titulo'; sortReverse = !sortReverse" class="nounderline_imp">
-						Titulo
 					    <span ng-show="(sortType == 'titulo' && !sortReverse) || sortType != 'titulo'" class="fa fa-caret-down"></span>
 					    <span ng-show="(sortType == 'titulo' && sortReverse)  || sortType != 'titulo'" class="fa fa-caret-up"></span>
 					</a>
+					<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-search"></i></div>
+						<input type="text" ng-model="titulo_filter" placeholder="Search titulo" class="form-control">
+					</div>
 				</td>
-	            <td>
-					Mensagem
-	            </td>
-	            <td>
+	            <td style="width: 16%;">
 					Autor
+					<div class="input-group">
+						<div class="input-group-addon"><i class="fa fa-search"></i></div>
+						<input type="text" ng-model="autor_filter" placeholder="Search autor" class="form-control">
+					</div>
 	            </td>
+				<td>
+					Criacao
+				</td>
+				<td>
+					Ultima Resposta
+					<!-- 
+					<a ng-click="sortType = 'ultima_resposta'; sortReverse = !sortReverse" class="nounderline_imp">
+					    <span ng-show="(sortType == 'ultima_resposta' && !sortReverse) || sortType != 'ultima_resposta'" class="fa fa-caret-down"></span>
+					    <span ng-show="(sortType == 'ultima_resposta' && sortReverse)  || sortType != 'ultima_resposta'" class="fa fa-caret-up"></span>
+					</a>
+					 -->
+				</td>
+				<td style="width: 16%;">
+					Respostas
+					<a ng-click="sortType = 'nr_respostas'; sortReverse = !sortReverse" class="nounderline_imp">
+					    <span ng-show="(sortType == 'nr_respostas' && !sortReverse) || sortType != 'nr_respostas'" class="fa fa-caret-down"></span>
+					    <span ng-show="(sortType == 'nr_respostas' && sortReverse)  || sortType != 'nr_respostas'" class="fa fa-caret-up"></span>
+					</a>
+				</td>
 	        </tr>
 	    </thead>
-	    <tbody>
-	        <tr ng-repeat="topic in topics | orderBy:sortType:sortReverse">
-	            <td><a href="#topic_details/{{topic.idtopico}}" class="thumb">{{topic.titulo}}</a></td>
-	            <td>{{topic.mensagem}}</td>
+	    <tbody style="font-size: 13px;">
+	        <tr ng-repeat="topic in topics | orderBy:sortType:sortReverse | filter:{titulo : titulo_filter, autor: autor_filter}">
+	            <td style="font-weight: bold; text-align: left;"><a href="#topic_details/{{topic.idtopico}}" class="thumb">{{topic.titulo}}</a></td>
 	            <td>{{topic.autor}}</td>
+	            <td>{{getCurrentDate() | date:'dd/MM/yyyy , HH:mm:ss'}}</td>
+	            <td>{{getCurrentDate() | date:'dd/MM/yyyy , HH:mm:ss'}}</td>
+	            <td>{{topic.nr_respostas}}</td>
 	        </tr>
 	    </tbody>
 	</table>
