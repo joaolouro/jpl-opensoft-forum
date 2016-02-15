@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `forum`.`topico` (
   `titulo` VARCHAR(45) NOT NULL,
   `mensagem` VARCHAR(45) NOT NULL,
   `autor` VARCHAR(45) NOT NULL,
+  `data_criacao` BIGINT(20) NOT NULL,
   PRIMARY KEY (`idtopico`),
   UNIQUE INDEX `idtopico_UNIQUE` (`idtopico` ASC))
 ENGINE = InnoDB
@@ -28,14 +29,12 @@ CREATE TABLE IF NOT EXISTS `forum`.`resposta` (
   `autor` VARCHAR(255) NOT NULL,
   `mensagem` VARCHAR(255) NOT NULL,
   `idtopicofk` INT(11) NOT NULL,
+  `data_criacao` BIGINT(20) NOT NULL,
   PRIMARY KEY (`idresposta`),
   INDEX `FK_qevjbm6u4a7ix8a458om21tm3` (`idtopicofk` ASC),
-  UNIQUE INDEX `idresposta_UNIQUE` (`idresposta` ASC),
   CONSTRAINT `FK_qevjbm6u4a7ix8a458om21tm3`
     FOREIGN KEY (`idtopicofk`)
-    REFERENCES `forum`.`topico` (`idtopico`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    REFERENCES `forum`.`topico` (`idtopico`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
